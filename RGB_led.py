@@ -16,21 +16,21 @@ from time import sleep
 
 GPIO.setmode(GPIO.BCM)
 
-red = 17
-green = 27
-blue = 18
+red_pin = 17
+green_pin = 27
+blue_pin = 18
 
-GPIO.setup(red, GPIO.OUT)
-GPIO.setup(blue, GPIO.OUT)
-GPIO.setup(green, GPIO.OUT)
+GPIO.setup(red_pin, GPIO.OUT)
+GPIO.setup(blue_pin, GPIO.OUT)
+GPIO.setup(green_pin, GPIO.OUT)
 
-RED = GPIO.PWM(red, 100)
-GREEN = GPIO.PWM(green, 100)
-BLUE = GPIO.PWM(blue, 100)
+RED_LED = GPIO.PWM(red_pin, 100)
+GREEN_LED = GPIO.PWM(green_pin, 100)
+BLUE_LED = GPIO.PWM(blue_pin, 100)
 
-RED.start(0)
-GREEN.start(0)
-BLUE.start(0)
+RED_LED.start(0)
+GREEN_LED.start(0)
+BLUE_LED.start(0)
 
 
 def setup():
@@ -39,21 +39,21 @@ def setup():
 
     GPIO.setmode(GPIO.BCM)
 
-    red = 17
-    green = 27
-    blue = 18
+    red_pin = 17
+    green_pin = 27
+    blue_pin = 18
 
-    GPIO.setup(red, GPIO.OUT)
-    GPIO.setup(blue, GPIO.OUT)
-    GPIO.setup(green, GPIO.OUT)
+    GPIO.setup(red_pin, GPIO.OUT)
+    GPIO.setup(blue_pin, GPIO.OUT)
+    GPIO.setup(green_pin, GPIO.OUT)
 
-    RED = GPIO.PWM(red, 100)
-    GREEN = GPIO.PWM(green, 100)
-    BLUE = GPIO.PWM(blue, 100)
+    RED_LED = GPIO.PWM(red_pin, 100)
+    GREEN_LED = GPIO.PWM(green_pin, 100)
+    BLUE_LED = GPIO.PWM(blue_pin, 100)
 
-    RED.start(0)
-    GREEN.start(0)
-    BLUE.start(0)
+    RED_LED.start(0)
+    GREEN_LED.start(0)
+    BLUE_LED.start(0)
 
 
 def setColor(rgb=[]):
@@ -62,9 +62,9 @@ def setColor(rgb=[]):
     https://github.com/geerlingguy/raspberry-pi-dramble/blob/dfe8b763513566e664506ee06378b261673ab831/playbooks/roles/leds/templates/fade.j2
     """
     rgb = [(x/255.0)*100 for x in rgb]
-    RED.ChangeDutyCycle(rgb[0])
-    GREEN.ChangeDutyCycle(rgb[1])
-    BLUE.ChangeDutyCycle(rgb[2])
+    RED_LED.ChangeDutyCycle(rgb[0])
+    GREEN_LED.ChangeDutyCycle(rgb[1])
+    BLUE_LED.ChangeDutyCycle(rgb[2])
 
 YELLOW = [255, 255, 0]
 CYAN = [0, 255, 255]
