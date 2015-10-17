@@ -33,6 +33,29 @@ GREEN.start(0)
 BLUE.start(0)
 
 
+def setup():
+    import RPi.GPIO as GPIO
+    from time import sleep
+
+    GPIO.setmode(GPIO.BCM)
+
+    red = 17
+    green = 27
+    blue = 18
+
+    GPIO.setup(red, GPIO.OUT)
+    GPIO.setup(blue, GPIO.OUT)
+    GPIO.setup(green, GPIO.OUT)
+
+    RED = GPIO.PWM(red, 100)
+    GREEN = GPIO.PWM(green, 100)
+    BLUE = GPIO.PWM(blue, 100)
+
+    RED.start(0)
+    GREEN.start(0)
+    BLUE.start(0)
+
+
 def setColor(rgb=[]):
     """
     from :
