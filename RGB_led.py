@@ -58,7 +58,7 @@ def fade_in_out(delay):
     usage : fade_in_out(delay)
     press ctrl-C to stop it, it runs forever
     """
-    INCREASING = 111  # one digit for each component of the rgb led, 1=ascending
+    INCREASING = 111  # one digit for each component of the rgb led,1=ascending
     red = 0
     green = 0
     blue = 0
