@@ -34,6 +34,10 @@ BLUE.start(0)
 
 
 def setColor(rgb=[]):
+    """
+    from :
+    https://github.com/geerlingguy/raspberry-pi-dramble/blob/dfe8b763513566e664506ee06378b261673ab831/playbooks/roles/leds/templates/fade.j2
+    """
     rgb = [(x/255.0)*100 for x in rgb]
     RED.ChangeDutyCycle(rgb[0])
     GREEN.ChangeDutyCycle(rgb[1])
@@ -42,11 +46,19 @@ def setColor(rgb=[]):
 YELLOW = [255, 255, 0]
 CYAN = [0, 255, 255]
 MAGENTA = [255, 0, 255]
+WHITE = [255, 255, 255]
+OFF = [0, 0, 0]
+RED = [255, 0, 0]
+GREEN = [0, 255, 0]
+BLUE = [0, 0, 255]
 
 
 def fade_in_out(delay):
-
-    INCREASING = [True, True, True]  # tell if R, G, B are increasing
+    """
+    usage : fade_in_out(delay)
+    press ctrl-C to stop it, it runs forever
+    """
+    INCREASING = 111  # one digit for each component of the rgb led, 1=ascending
     red = 0
     green = 0
     blue = 0
@@ -54,33 +66,33 @@ def fade_in_out(delay):
     while True:
         setColor([red, green, blue])
 
-        if all(INCREASING):
+        if INCREASING == 111:
             red += 1
             sleep(delay)
             if red == 255:
-                INCREASING[0] = False
-        if INCREASING[1] and INCREASING[2] and not INCREASING[0]:
+                INCREASING = 011
+        if INCREASING == 011:
             green += 1
             sleep(delay)
             if green == 255:
-                INCREASING[1] = False
-        if INCREASING[2] and not INCREASING[0] and not INCREASING[1]:
+                INCREASING == 001
+        if INCREASING == 001:
             blue += 1
             sleep(delay)
             if blue == 255:
-                INCREASING[2] = False
-        if not any(INCREASING):
+                INCREASING = 000
+        if INCREASING == 000:
             red -= 1
             sleep(delay)
             if red == 1:
-                INCREASING[0] = True
-        if INCREASING[0] and not INCREASING[2] and not INCREASING[1]:
+                INCREASING == 100
+        if INCREASING == 100:
             green -= 1
             sleep(delay)
             if green == 1:
-                INCREASING[1] = True
-        if INCREASING[1] and INCREASING[0] and not INCREASING[2]:
+                INCREASING == 110
+        if INCREASING == 110:
             blue -= 1
             sleep(delay)
             if blue == 1:
-                INCREASING[2] = True
+                INCREASING == 111
