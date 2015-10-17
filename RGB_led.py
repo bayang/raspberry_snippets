@@ -2,9 +2,13 @@
 
 """usage:
 setColor([red_value, green_value, blue_value])
-0 < values < 255
+where 0 < values < 255
 and
+fade_in_out(delay)
+for example :
 fade_in_out(0.02)
+
+inspired by : https://github.com/geerlingguy/raspberry-pi-dramble/blob/dfe8b763513566e664506ee06378b261673ab831/playbooks/roles/leds/templates/fade.j2
 """
 
 import RPi.GPIO as GPIO
