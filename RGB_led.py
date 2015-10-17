@@ -45,9 +45,7 @@ MAGENTA = [255, 0, 255]
 
 
 def fade_in_out(delay):
-    # RED_INCREASING = True
-    # GREEN_INCREASING = True
-    # BLUE_INCREASING = True
+
     INCREASING = [True, True, True]  # tell if R, G, B are increasing
     red = 0
     green = 0
