@@ -58,7 +58,7 @@ def fade_in_out(delay):
     usage : fade_in_out(delay)
     press ctrl-C to stop it, it runs forever
     """
-    INCREASING = 111  # one digit for each component of the rgb led,1=ascending
+    INCREASING = "111"  # one digit for each component of the rgb led,1=ascending
     red = 0
     green = 0
     blue = 0
@@ -66,33 +66,33 @@ def fade_in_out(delay):
     while True:
         setColor([red, green, blue])
 
-        if INCREASING == 111:
+        if INCREASING == "111":
             red += 1
             sleep(delay)
             if red == 255:
-                INCREASING = 011
-        if INCREASING == 011:
+                INCREASING = "011"
+        if INCREASING == "011":
             green += 1
             sleep(delay)
             if green == 255:
-                INCREASING == 001
-        if INCREASING == 001:
+                INCREASING == "001"
+        if INCREASING == "001":
             blue += 1
             sleep(delay)
             if blue == 255:
-                INCREASING = 000
-        if INCREASING == 000:
+                INCREASING = "000"
+        if INCREASING == "000":
             red -= 1
             sleep(delay)
             if red == 1:
-                INCREASING == 100
-        if INCREASING == 100:
+                INCREASING == "100"
+        if INCREASING == "100":
             green -= 1
             sleep(delay)
             if green == 1:
-                INCREASING == 110
-        if INCREASING == 110:
+                INCREASING == "110"
+        if INCREASING == "110":
             blue -= 1
             sleep(delay)
             if blue == 1:
-                INCREASING == 111
+                INCREASING == "111"
