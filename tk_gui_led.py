@@ -49,42 +49,40 @@ def fade_in_out(delay=0.05):
     green = 0
     blue = 0
 
-    if app.CYCLING.get() !=1:
-        while True:
-            setColor([red, green, blue])
 
-            if INCREASING == "111":
-                red += 1
-                sleep(delay)
-                if red >= 255:
-                    INCREASING = "011"
-            elif INCREASING == "011":
-                green += 1
-                sleep(delay)
-                if green >= 255:
-                    INCREASING = "001"
-            elif INCREASING == "001":
-                blue += 1
-                sleep(delay)
-                if blue >= 255:
-                    INCREASING = "000"
-            elif INCREASING == "000":
-                red -= 1
-                sleep(delay)
-                if red <= 1:
-                    INCREASING = "100"
-            elif INCREASING == "100":
-                green -= 1
-                sleep(delay)
-                if green <= 1:
-                    INCREASING = "110"
-            elif INCREASING == "110":
-                blue -= 1
-                sleep(delay)
-                if blue <= 1:
-                    INCREASING = "111"
-    else:
-        break
+    while app.CYCLING.get() !=1:
+        setColor([red, green, blue])
+
+        if INCREASING == "111":
+            red += 1
+            sleep(delay)
+            if red >= 255:
+                INCREASING = "011"
+        elif INCREASING == "011":
+            green += 1
+            sleep(delay)
+            if green >= 255:
+                INCREASING = "001"
+        elif INCREASING == "001":
+            blue += 1
+            sleep(delay)
+            if blue >= 255:
+                INCREASING = "000"
+        elif INCREASING == "000":
+            red -= 1
+            sleep(delay)
+            if red <= 1:
+                INCREASING = "100"
+        elif INCREASING == "100":
+            green -= 1
+            sleep(delay)
+            if green <= 1:
+                INCREASING = "110"
+        elif INCREASING == "110":
+            blue -= 1
+            sleep(delay)
+            if blue <= 1:
+                INCREASING = "111"
 
 
 def thread_fade_in_out():
@@ -185,15 +183,15 @@ class LedMainPage(tk.Frame):
         self.off_button.pack()
 
     def toggle_fade_in_out(self):
-        if app.CYCLING.get() == 0:
+        if self.cycle_button['text'] =='Start':
             self.cycle_button.config(text='Stop')
-            thread_fade_in_out()
-            app.CYCLING.set(1)
-
-        elif app.CYCLING.get() == 1:
-            self.cycle_button.config(text='Start')
-            thread_fade_in_out()
             app.CYCLING.set(0)
+            thread_fade_in_out()
+
+
+        elif self.cycle_button['text'] =='Stop':
+            self.cycle_button.config(text='Start')
+            app.CYCLING.set(1)
 
 app = TkLedApp()
 app.geometry("640x480")
