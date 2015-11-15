@@ -157,7 +157,7 @@ class LedMainPage(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
         self.label = ttk.Label(self, text="Main Page")
-        self.label.grid(column=0, row=0, columnspan=2, sticky="n", pady=5, padx=5)
+        self.label.grid(column=0, row=0, columnspan=2, sticky="n", padx=5)
         self.chose_color_button = ttk.Button(self, text="Choose a color",
                                               command=PromptColor)
         self.chose_color_button.grid(column=0, row=1, columnspan=2, pady=5, padx=5)
@@ -177,10 +177,10 @@ class LedMainPage(tk.Frame):
         self.blue_value_label = ttk.Label(self, textvariable=controller.blue_value)
         self.blue_value_label.grid(column=5, row=2, pady=5, padx=5, sticky="e")
         self.cycle_label = ttk.Label(self, text="Toggle fading in and out of the led :")
-        self.cycle_label.grid(column=0, row=3, columnspan=2, pady=5, padx=5)
+        self.cycle_label.grid(column=0, row=3, pady=5, padx=5, sticky="w")
         self.cycle_button = ttk.Button(self, text="Start",
                                   command=self.toggle_fade_in_out)
-        self.cycle_button.grid(column=3, row=3, columnspan=2, pady=5, padx=5)
+        self.cycle_button.grid(column=1, row=3, columnspan=2, pady=5, padx=5, sticky="w")
         self.off_button = ttk.Button(self, text="Turn off the led",
             command=lambda: setColor([0, 0, 0]))
         self.off_button.grid(column=4, row=1, columnspan=2, pady=5, padx=5)
