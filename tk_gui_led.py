@@ -85,7 +85,6 @@ def fade_in_out(delay=0.1):
                     INCREASING = "111"
     else:
         setColor([0, 0, 0])
-        app.CYCLING.set(0)
 
 
 def thread_fade_in_out():
@@ -186,11 +185,12 @@ class LedMainPage(tk.Frame):
         self.off_button.pack()
 
     def toggle_fade_in_out(self):
-        if self.cycle_button['text'] == 'Start':
+        if app.CYCLING.get() == 0:
             self.cycle_button.config(text='Stop')
             thread_fade_in_out()
             app.CYCLING.set(1)
-        elif self.cycle_button['text'] == 'Stop':
+
+        elif app.CYCLING.get() == 1:
             self.cycle_button.config(text='Start')
             setColor([0, 0, 0])
             app.CYCLING.set(0)
