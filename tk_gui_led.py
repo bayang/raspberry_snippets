@@ -19,12 +19,12 @@ def PromptColor():
     print(RED, GREEN, BLUE)
 
 
-def setColor(rgb = [app.red_value.get(), app.green_value.get(), app.blue_value.get()]):
+def setColor(rgb):
     """
     from :
     https://github.com/geerlingguy/raspberry-pi-dramble/blob/dfe8b763513566e664506ee06378b261673ab831/playbooks/roles/leds/templates/fade.j2
     """
-    #rgb = [app.red_value.get(), app.green_value.get(), app.blue_value.get()]
+    # rgb = [app.red_value.get(), app.green_value.get(), app.blue_value.get()]
     rgb = [(x/255.0)*100 for x in rgb]
     app.RED_LED.ChangeDutyCycle(rgb[0])
     app.GREEN_LED.ChangeDutyCycle(rgb[1])
@@ -153,7 +153,7 @@ class LedMainPage(tk.Frame):
                                               command=PromptColor)
         chose_color_button.pack()
         set_color_button = ttk.Button(self, text="Apply color",
-                                            command=setColor)
+            command=lambda: setColor([app.red_value.get(), app.green_value.get(), app.blue_value.get()]))
         set_color_button.pack()
         red_label = ttk.Label(self, text="Value you chose for red :")
         red_label.pack(pady=10, padx=10)
