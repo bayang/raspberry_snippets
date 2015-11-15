@@ -156,7 +156,7 @@ class LedMainPage(tk.Frame):
 
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
-        
+
         self.chose_color_button = ttk.Button(self, text="Choose a color",
                                               command=PromptColor)
         self.chose_color_button.grid(column=0, row=1, columnspan=2, pady=5, padx=5)
@@ -196,5 +196,7 @@ class LedMainPage(tk.Frame):
             setColor([0, 0, 0])
 
 app = TkLedApp()
-app.geometry("640x480")
+app.geometry("400x450+50+50")
+app.minsize(300, 300)
+app.maxsize(640, 480)
 app.mainloop()
