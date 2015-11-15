@@ -42,9 +42,10 @@ def fade_in_out(delay=0.4):
     green = 0
     blue = 0
 
-    if app.CYCLING.get():
+    if not app.CYCLING.get():
         while True:
             setColor([red, green, blue])
+            app.CYCLING.set(1)
 
             if INCREASING == "111":
                 red += 1
@@ -80,6 +81,7 @@ def fade_in_out(delay=0.4):
         app.RED_LED.ChangeDutyCycle(0)
         app.GREEN_LED.ChangeDutyCycle(0)
         app.BLUE_LED.ChangeDutyCycle(0)
+        app.CYCLING.set(0)
 
 
 class TkLedApp(tk.Tk):
