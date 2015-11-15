@@ -4,6 +4,8 @@
 import tkinter as tk
 from tkinter import ttk
 from tkinter import colorchooser
+import RPi.GPIO as GPIO
+from time import sleep
 
 
 def PromptColor():
