@@ -160,30 +160,30 @@ class LedMainPage(tk.Frame):
         self.label.grid(column=2, row=0, columnspan=2)
         self.chose_color_button = ttk.Button(self, text="Choose a color",
                                               command=PromptColor)
-        self.chose_color_button.grid(column=0, row=2, columnspan=2)
+        self.chose_color_button.grid(column=0, row=1, columnspan=2)
         self.set_color_button = ttk.Button(self, text="Apply color",
             command=lambda: setColor([app.red_value.get(), app.green_value.get(), app.blue_value.get()]))
-        self.set_color_button.grid(column=2, row=2, columnspan=2)
+        self.set_color_button.grid(column=2, row=1, columnspan=2)
         self.red_label = ttk.Label(self, text="Value you chose for red :")
-        self.red_label.grid(column=0, row=4)
+        self.red_label.grid(column=0, row=3)
         self.red_value_label = ttk.Label(self, textvariable=controller.red_value)
-        self.red_value_label.grid(column=1, row=4)
+        self.red_value_label.grid(column=1, row=3)
         self.green_label = ttk.Label(self, text="Value you chose for green :")
-        self.green_label.grid(column=2, row=4)
+        self.green_label.grid(column=2, row=3)
         self.green_value_label = ttk.Label(self, textvariable=controller.green_value)
-        self.green_value_label.grid(column=3, row=4)
+        self.green_value_label.grid(column=3, row=3)
         self.blue_label = ttk.Label(self, text="Value you chose for blue :")
-        self.blue_label.grid(column=4, row=4)
+        self.blue_label.grid(column=4, row=3)
         self.blue_value_label = ttk.Label(self, textvariable=controller.blue_value)
-        self.blue_value_label.grid(column=5, row=4)
+        self.blue_value_label.grid(column=5, row=3)
         self.cycle_label = ttk.Label(self, text="Toggle fading in and out of the led")
-        self.cycle_label.grid(column=0, row=6, columnspan=2)
+        self.cycle_label.grid(column=0, row=5, columnspan=2)
         self.cycle_button = ttk.Button(self, text="Start",
                                   command=self.toggle_fade_in_out)
-        self.cycle_button.grid(column=3, row=6, columnspan=2)
+        self.cycle_button.grid(column=3, row=5, columnspan=2)
         self.off_button = ttk.Button(self, text="Turn off the led",
             command=lambda: setColor([0, 0, 0]))
-        self.off_button.grid(column=4, row=2, columnspan=2)
+        self.off_button.grid(column=4, row=1, columnspan=2)
 
     def toggle_fade_in_out(self):
         if self.cycle_button['text'] == 'Start':
