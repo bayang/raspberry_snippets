@@ -7,5 +7,6 @@ These functions can be used through the CLI.
 
 The `tk_gui_led.py` is a tkinter gui used to play with the functions.
 You can run `python tk_gui_led.py`
+A color chooser allows you to easily pick a color.
 
 No external dependencies required except `tkinter` and `Rpi.GPIO`. Both are usually available on a Raspberry Pi.
