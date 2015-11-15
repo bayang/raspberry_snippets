@@ -76,7 +76,7 @@ GREEN = [0, 255, 0]
 BLUE = [0, 0, 255]
 
 
-def fade_in_out(delay):
+def fade_in_out(delay=0.4):
     """
     usage : fade_in_out(delay)
     press ctrl-C to stop it, it runs forever

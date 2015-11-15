@@ -32,6 +32,54 @@ def setColor():
     print(rgb)
 
 
+def fade_in_out(delay=0.4):
+    """
+    usage : fade_in_out(delay)
+    press ctrl-C to stop it, it runs forever
+    """
+    INCREASING = "111"  # one digit for each component of the rgb led,1=ascending
+    red = 0
+    green = 0
+    blue = 0
+
+    if app.CYCLING.get():
+        while True:
+            setColor([red, green, blue])
+
+            if INCREASING == "111":
+                red += 1
+                sleep(delay)
+                if red >= 255:
+                    INCREASING = "011"
+            elif INCREASING == "011":
+                green += 1
+                sleep(delay)
+                if green >= 255:
+                    INCREASING = "001"
+            elif INCREASING == "001":
+                blue += 1
+                sleep(delay)
+                if blue >= 255:
+                    INCREASING = "000"
+            elif INCREASING == "000":
+                red -= 1
+                sleep(delay)
+                if red <= 1:
+                    INCREASING = "100"
+            elif INCREASING == "100":
+                green -= 1
+                sleep(delay)
+                if green <= 1:
+                    INCREASING = "110"
+            elif INCREASING == "110":
+                blue -= 1
+                sleep(delay)
+                if blue <= 1:
+                    INCREASING = "111"
+    else:
+        setColor([0, 0, 0])
+
+
 class TkLedApp(tk.Tk):
 
     def __init__(self, *args, **kwargs):
@@ -51,6 +99,9 @@ class TkLedApp(tk.Tk):
         self.green_value.set(0)
         self.blue_value = tk.IntVar()
         self.blue_value.set(0)
+
+        self.CYCLING = tk.IntVar()
+        self.CYCLING.set(0)
 
         self.frames = {}
 
@@ -114,6 +165,9 @@ class LedMainPage(tk.Frame):
         blue_label.pack(pady=10, padx=10)
         blue_value_label = ttk.Label(self, textvariable=controller.blue_value)
         blue_value_label.pack(pady=10, padx=10)
+        cycle_button = ttk.Button(self, text="Toggle fading in and out the led",
+                                  command=fade_in_out)
+        cycle_button.pack()
 
 
 app = TkLedApp()
