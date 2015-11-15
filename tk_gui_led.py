@@ -196,7 +196,7 @@ class LedMainPage(tk.Frame):
             setColor([0, 0, 0])
 
 app = TkLedApp()
-app.geometry("500x350+50+50")
+app.geometry("600x300+50+50")
 app.minsize(300, 300)
 app.maxsize(640, 480)
 app.mainloop()
