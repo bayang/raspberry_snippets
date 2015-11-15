@@ -156,8 +156,7 @@ class LedMainPage(tk.Frame):
 
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
-        self.label = ttk.Label(self, text="Main Page")
-        self.label.grid(column=0, row=0, columnspan=2, sticky="n", padx=5)
+        
         self.chose_color_button = ttk.Button(self, text="Choose a color",
                                               command=PromptColor)
         self.chose_color_button.grid(column=0, row=1, columnspan=2, pady=5, padx=5)
