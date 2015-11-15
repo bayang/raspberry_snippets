@@ -158,40 +158,40 @@ class LedMainPage(tk.Frame):
 
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
-        label = ttk.Label(self, text="Main Page")
-        label.pack(pady=10, padx=10)
-        chose_color_button = ttk.Button(self, text="Choose a color",
+        self.label = ttk.Label(self, text="Main Page")
+        self.label.pack(pady=10, padx=10)
+        self.chose_color_button = ttk.Button(self, text="Choose a color",
                                               command=PromptColor)
-        chose_color_button.pack()
-        set_color_button = ttk.Button(self, text="Apply color",
+        self.chose_color_button.pack()
+        self.set_color_button = ttk.Button(self, text="Apply color",
             command=lambda: setColor([app.red_value.get(), app.green_value.get(), app.blue_value.get()]))
-        set_color_button.pack()
-        red_label = ttk.Label(self, text="Value you chose for red :")
-        red_label.pack(pady=10, padx=10)
-        red_value_label = ttk.Label(self, textvariable=controller.red_value)
-        red_value_label.pack(pady=10, padx=10)
-        green_label = ttk.Label(self, text="Value you chose for green :")
-        green_label.pack(pady=10, padx=10)
-        green_value_label = ttk.Label(self, textvariable=controller.green_value)
-        green_value_label.pack(pady=10, padx=10)
-        blue_label = ttk.Label(self, text="Value you chose for blue :")
-        blue_label.pack(pady=10, padx=10)
-        blue_value_label = ttk.Label(self, textvariable=controller.blue_value)
-        blue_value_label.pack(pady=10, padx=10)
-        cycle_button = ttk.Button(self, text="Start",
+        self.set_color_button.pack()
+        self.red_label = ttk.Label(self, text="Value you chose for red :")
+        self.red_label.pack(pady=10, padx=10)
+        self.red_value_label = ttk.Label(self, textvariable=controller.red_value)
+        self.red_value_label.pack(pady=10, padx=10)
+        self.green_label = ttk.Label(self, text="Value you chose for green :")
+        self.green_label.pack(pady=10, padx=10)
+        self.green_value_label = ttk.Label(self, textvariable=controller.green_value)
+        self.green_value_label.pack(pady=10, padx=10)
+        self.blue_label = ttk.Label(self, text="Value you chose for blue :")
+        self.blue_label.pack(pady=10, padx=10)
+        self.blue_value_label = ttk.Label(self, textvariable=controller.blue_value)
+        self.blue_value_label.pack(pady=10, padx=10)
+        self.cycle_button = ttk.Button(self, text="Start",
                                   command=self.toggle_fade_in_out)
-        cycle_button.pack()
-        off_button = ttk.Button(self, text="Turn off the led",
+        self.cycle_button.pack()
+        self.off_button = ttk.Button(self, text="Turn off the led",
             command=lambda: setColor([0, 0, 0]))
-        off_button.pack()
+        self.off_button.pack()
 
     def toggle_fade_in_out(self):
-        if cycle_button['text'] == 'Start':
-            cycle_button.config(text='Stop')
+        if self.cycle_button['text'] == 'Start':
+            self.cycle_button.config(text='Stop')
             thread_fade_in_out()
             app.CYCLING.set(1)
-        elif cycle_button['text'] == 'Stop':
-            cycle_button.config(text='Start')
+        elif self.cycle_button['text'] == 'Stop':
+            self.cycle_button.config(text='Start')
             setColor([0, 0, 0])
             app.CYCLING.set(0)
 
