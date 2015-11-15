@@ -39,7 +39,7 @@ def setColor(rgb):
     print(rgb)
 
 
-def fade_in_out(delay=0.05):
+def fade_in_out(delay=0.02):
     """
     usage : fade_in_out(delay)
     press ctrl-C to stop it, it runs forever
@@ -192,6 +192,7 @@ class LedMainPage(tk.Frame):
         elif self.cycle_button['text'] =='Stop':
             self.cycle_button.config(text='Start')
             app.CYCLING.set(1)
+            setColor([0, 0, 0])
 
 app = TkLedApp()
 app.geometry("640x480")
