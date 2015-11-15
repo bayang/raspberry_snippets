@@ -176,7 +176,7 @@ class LedMainPage(tk.Frame):
         self.blue_label.grid(column=4, row=2, sticky="e", pady=5, padx=5)
         self.blue_value_label = ttk.Label(self, textvariable=controller.blue_value)
         self.blue_value_label.grid(column=5, row=2, pady=5, padx=5, sticky="e")
-        self.cycle_label = ttk.Label(self, text="Toggle fading in and out of the led :")
+        self.cycle_label = ttk.Label(self, text="Toggle fading in and out of the led :", width=26)
         self.cycle_label.grid(column=0, row=3, pady=5, padx=5, sticky="w")
         self.cycle_button = ttk.Button(self, text="Start",
                                   command=self.toggle_fade_in_out)
