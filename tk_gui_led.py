@@ -19,12 +19,12 @@ def PromptColor():
     print(RED, GREEN, BLUE)
 
 
-def setColor():
+def setColor(rgb = [app.red_value.get(), app.green_value.get(), app.blue_value.get()]):
     """
     from :
     https://github.com/geerlingguy/raspberry-pi-dramble/blob/dfe8b763513566e664506ee06378b261673ab831/playbooks/roles/leds/templates/fade.j2
     """
-    rgb = [app.red_value.get(), app.green_value.get(), app.blue_value.get()]
+    #rgb = [app.red_value.get(), app.green_value.get(), app.blue_value.get()]
     rgb = [(x/255.0)*100 for x in rgb]
     app.RED_LED.ChangeDutyCycle(rgb[0])
     app.GREEN_LED.ChangeDutyCycle(rgb[1])
@@ -78,9 +78,7 @@ def fade_in_out(delay=0.4):
                 if blue <= 1:
                     INCREASING = "111"
     else:
-        app.RED_LED.ChangeDutyCycle(0)
-        app.GREEN_LED.ChangeDutyCycle(0)
-        app.BLUE_LED.ChangeDutyCycle(0)
+        setColor([0, 0, 0])
         app.CYCLING.set(0)
 
 
