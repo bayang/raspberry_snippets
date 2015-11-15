@@ -6,6 +6,13 @@ from tkinter import ttk
 from tkinter import colorchooser
 import RPi.GPIO as GPIO
 from time import sleep
+import atexit
+from threading import Thread
+
+
+@atexit.register
+def cleanup():
+    GPIO.cleanup()
 
 
 def PromptColor():
@@ -32,7 +39,7 @@ def setColor(rgb):
     print(rgb)
 
 
-def fade_in_out(delay=0.4):
+def fade_in_out(delay=0.1):
     """
     usage : fade_in_out(delay)
     press ctrl-C to stop it, it runs forever
@@ -45,7 +52,6 @@ def fade_in_out(delay=0.4):
     if not app.CYCLING.get():
         while True:
             setColor([red, green, blue])
-            app.CYCLING.set(1)
 
             if INCREASING == "111":
                 red += 1
@@ -80,6 +86,11 @@ def fade_in_out(delay=0.4):
     else:
         setColor([0, 0, 0])
         app.CYCLING.set(0)
+
+
+def thread_fade_in_out():
+    fade_thread = Thread(target=fade_in_out)
+    fade_thread.start()
 
 
 class TkLedApp(tk.Tk):
@@ -123,7 +134,7 @@ class TkLedApp(tk.Tk):
         frame.tkraise()
 
     def setup(self):
-        GPIO.cleanup()
+
         GPIO.setmode(GPIO.BCM)
 
         red_pin = 17
@@ -167,10 +178,22 @@ class LedMainPage(tk.Frame):
         blue_label.pack(pady=10, padx=10)
         blue_value_label = ttk.Label(self, textvariable=controller.blue_value)
         blue_value_label.pack(pady=10, padx=10)
-        cycle_button = ttk.Button(self, text="Toggle fading in and out the led",
-                                  command=fade_in_out)
+        cycle_button = ttk.Button(self, text="Start",
+                                  command=self.toggle_fade_in_out)
         cycle_button.pack()
+        off_button = ttk.Button(self, text="Turn off the led",
+            command=lambda: setColor([0, 0, 0]))
+        off_button.pack()
 
+    def toggle_fade_in_out(self):
+        if self.cycle_button['text'] == 'Start':
+            self.cycle_button.config(text='Stop')
+            thread_fade_in_out()
+            app.CYCLING.set(1)
+        elif self.cycle_button['text'] == 'Stop':
+            self.cycle_button.config(text='Start')
+            setColor([0, 0, 0])
+            app.CYCLING.set(0)
 
 app = TkLedApp()
 app.geometry("640x480")
